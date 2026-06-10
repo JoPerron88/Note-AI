@@ -32,7 +32,14 @@ le même vault.
 - **Ne pas réinventer OneNote** : orchestrer Claude + des conventions sur les briques Obsidian
   existantes (dossiers, liens/backlinks, tags, propriétés YAML, Dataview, Tasks, terminal).
 
+- **Autosuffisance** (ajouté 2026-06-10) : Note AI = un **plugin Claude Code** qui se suffit à
+  lui-même — aucune dépendance à d'autres skills/plugins Claude Code, outils natifs seulement.
+  Installable depuis GitHub sur toute machine (mac/win/linux), dans n'importe quel coffre.
+
 ## Statut
 
-Direction arrêtée le 2026-06-10 (débat à 3 entités convergent → Route Obsidian). Détail complet
-et historique de la réflexion dans `CONCEPT.md`. Prochaine étape : maquette, puis scope V1.
+Direction arrêtée le 2026-06-10 (débat à 3 entités convergent → Route Obsidian). Maquette livrée
+(`maquette/`). **V1 construite le 2026-06-10** : le dépôt est un marketplace Claude Code, le
+plugin vit dans `plugins/note-ai/` (skill + conventions + templates ; bootstrap automatique d'un
+coffre, `CLAUDE.md` déposé = adjoint par défaut). Terrain d'usage : Claude Code interactif dans
+Claude sidebar (Obsidian). Prochaine étape : test réel par l'utilisateur, puis itérations.

@@ -14,17 +14,27 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
 ## Où on en est
 - Branche : `main` · Arbre de travail **propre** (tout commité et poussé).
 - Remote : `origin → github.com/JoPerron88/Note-AI.git`.
-- **Stade = CONCEPTION.** Aucun code, aucun vault Obsidian construit pour l'instant — uniquement
-  les documents de concept.
+- **Stade = V1 CONSTRUITE, EN TEST.** Le produit est un **plugin Claude Code autosuffisant**
+  (aucune dépendance à d'autres skills/plugins — décision ferme du 2026-06-10).
 - ✅ **`CLAUDE.md` créé à la racine** (2026-06-10) : instructions projet pour les futures
   sessions — décisions arrêtées, conventions du vault, carte des documents.
-- ✅ **Maquette livrée** (2026-06-10) dans `maquette/` : `MAQUETTE.md` (ASCII, la référence
-  versionnée) + `maquette.html` (rendu navigateur, zéro dépendance, à ouvrir tel quel).
-  4 vues : fenêtre Obsidian complète, flux « drop → range », cahier-maître, page type.
+- ✅ **Maquette livrée** (2026-06-10) dans `maquette/` : `MAQUETTE.md` + `maquette.html`,
+  4 vues (fenêtre Obsidian, flux « drop → range », cahier-maître, page type).
+- ✅ **Plugin V1 construit** (2026-06-10) : le dépôt est un marketplace Claude Code
+  (`.claude-plugin/marketplace.json`) ; le plugin vit dans `plugins/note-ai/` —
+  `SKILL.md` (déclencheurs + comportements + bootstrap automatique d'un coffre),
+  `references/conventions.md` (le §12 distillé), `references/templates/` (`CLAUDE-coffre.md`
+  déposé à l'init = adjoint par défaut, `Cahier-maitre.md`, `projet.md`). README d'installation
+  refait. Manifestes validés (JSON + chemins + frontmatter ≤ 1024 car.).
+- Contexte d'usage : l'utilisateur a installé **Obsidian + Claude sidebar** (Claude Code
+  interactif dans Obsidian) — c'est le terrain de test réel.
 
 ## Ce qui était prévu ensuite
-Une piste en attente :
-1. **Scope V1** puis construction du vault — voir `CONCEPT.md` §12.6 (périmètre V1 déjà ébauché).
+1. **Test réel** : installation via `/plugin marketplace add JoPerron88/Note-AI` +
+   `/plugin install note-ai@note-ai` dans Claude sidebar, init d'un coffre, scénarios du
+   concept (« range ça », « où en suis-je »…). Les ratés observés = matière du REFACTOR
+   (le skill n'a pas eu de tests sous-agents — le test réel en tient lieu).
+2. Itérations sur le skill selon les retours ; « plus tard » du §12.6 (Ollama, automatisations).
 
 ## Reprendre sur une machine neuve (le projet)
 1. `git clone https://github.com/JoPerron88/Note-AI.git` (ou ouvrir le dossier iCloud).

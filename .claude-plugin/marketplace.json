@@ -1,0 +1,13 @@
+{
+  "name": "note-ai",
+  "owner": {
+    "name": "JoPerron88"
+  },
+  "plugins": [
+    {
+      "name": "note-ai",
+      "source": "./plugins/note-ai",
+      "description": "L'adjoint maître des notes : transforme tout coffre Obsidian en carnet façon OneNote piloté par Claude Code (structure Notebooks/Sections/Pages, inbox, index optimisé tokens)."
+    }
+  ]
+}

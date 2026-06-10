@@ -8,9 +8,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **sur Obsidian** (Notebooks › Sections › Pages = dossiers / fichiers Markdown), où **Claude Code
 interactif** (dans le terminal intégré d'Obsidian) range, réécrit, retrouve et suit les projets.
 
-**Stade actuel : CONCEPTION.** Le dépôt ne contient que des documents Markdown — aucun code,
-aucun build, aucun test, aucun vault Obsidian construit. Ne pas chercher de commandes de
-développement : il n'y en a pas.
+**Stade actuel : V1 CONSTRUITE, EN TEST.** Le produit est un **plugin Claude Code** dans
+`plugins/note-ai/` (ce dépôt est aussi le marketplace : `.claude-plugin/marketplace.json`).
+Pas de build ni de tests automatisés — le « code » est du Markdown (skill, conventions,
+templates) ; la validation = manifestes JSON valides + test réel dans Obsidian/Claude sidebar.
+**Contrainte d'autosuffisance** : le plugin ne dépend d'aucun autre skill/plugin Claude Code —
+outils natifs seulement ; ne jamais introduire une telle dépendance.
 
 Tout le travail se fait **en français** (documents, commits, échanges).
 
