@@ -12,24 +12,23 @@ c'est classé/réécrit/indexé en quelques secondes ; je consulte/modifie à la
 naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
 
 ## Où on en est
-- Branche : `main` · Derniers commits : `45e2a5e` (concept + cap), `f9bdf43` (initial).
-- Arbre de travail **propre** (tout commité).
-- Remote : `origin → github.com/JoPerron88/Note-AI.git`. Le commit `45e2a5e` a été **poussé**
-  pendant ce handoff (voir le commit de handoff lui-même, poussé juste après).
+- Branche : `main` · Arbre de travail **propre** (tout commité et poussé).
+- Remote : `origin → github.com/JoPerron88/Note-AI.git`.
 - **Stade = CONCEPTION.** Aucun code, aucun vault Obsidian construit pour l'instant — uniquement
   les documents de concept.
+- ✅ **`CLAUDE.md` créé à la racine** (2026-06-10) : instructions projet pour les futures
+  sessions — décisions arrêtées, conventions du vault, carte des documents.
 
 ## Ce qui était prévu ensuite
-Trois pistes en attente (dans l'ordre logique) :
-1. **`CLAUDE.md`** — instructions projet à la racine, pour que les futures sessions comprennent le
-   projet et les conventions sans tout relire.
-2. **La maquette** — passer du texte à un visuel de l'interface (le vault, le terminal-chat, le
+Deux pistes en attente (dans l'ordre logique) :
+1. **La maquette** — passer du texte à un visuel de l'interface (le vault, le terminal-chat, le
    flux « drop → range »).
-3. **Scope V1** puis construction — voir `CONCEPT.md` §12.6 (périmètre V1 déjà ébauché).
+2. **Scope V1** puis construction — voir `CONCEPT.md` §12.6 (périmètre V1 déjà ébauché).
 
 ## Reprendre sur une machine neuve (le projet)
 1. `git clone https://github.com/JoPerron88/Note-AI.git` (ou ouvrir le dossier iCloud).
-2. Lire `session-handoff/OUTILLAGE.md` puis ce fichier, puis **`CONCEPT.md`** (le concept complet).
+2. Lire `session-handoff/OUTILLAGE.md` puis ce fichier, puis **`CLAUDE.md`** (l'essentiel) et
+   **`CONCEPT.md`** (le concept complet) au besoin.
 3. **Pas de build / test / lancement** à ce stade : le projet est au stade concept (Markdown
    uniquement). Le « produit » futur sera un **vault Obsidian + Claude Code interactif +
    conventions** — pas encore construit.
