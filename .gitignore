@@ -1,2 +1,9 @@
 .claude/
 .DS_Store
+*.icloud
+
+# Multivac — fichiers transitoires/générés (on garde goal.md et plans/)
+.multivac/journal/
+.multivac/manifest.json
+.multivac/skills-inventory.md
+.multivac/eggs-state.json
