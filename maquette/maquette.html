@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maquette — Note AI</title>
+<style>
+  :root {
+    --bg: #1e1e1e;
+    --bg-deep: #161616;
+    --bg-panel: #262626;
+    --bg-hover: #2f2f2f;
+    --border: #3a3a3a;
+    --text: #dcddde;
+    --text-dim: #9a9a9a;
+    --accent: #a78bfa;
+    --accent-dim: #7c5cd6;
+    --green: #6cc070;
+    --orange: #e0a458;
+    --red: #e06c6c;
+    --mono: "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #111;
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .intro { max-width: 1100px; margin: 0 auto 18px; }
+  .intro h1 { font-size: 1.5rem; margin-bottom: 4px; }
+  .intro h1 span { color: var(--accent); }
+  .intro p { color: var(--text-dim); font-size: 0.9rem; }
+  .intro code { font-family: var(--mono); color: var(--accent); font-size: 0.85em; }
+
+  .tabs { max-width: 1100px; margin: 0 auto 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .tabs button {
+    background: var(--bg-panel); color: var(--text-dim); border: 1px solid var(--border);
+    padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+  }
+  .tabs button.active { background: var(--accent-dim); color: #fff; border-color: var(--accent-dim); }
+  .tabs button:hover:not(.active) { background: var(--bg-hover); color: var(--text); }
+
+  .view { display: none; max-width: 1100px; margin: 0 auto; }
+  .view.active { display: block; }
+  .caption { color: var(--text-dim); font-size: 0.85rem; margin: 10px 2px 18px; line-height: 1.5; }
+  .caption b { color: var(--text); }
+
+  /* ===== Fenêtre Obsidian ===== */
+  .window {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.5);
+  }
+  .titlebar {
+    background: var(--bg-deep); padding: 9px 14px; display: flex; align-items: center;
+    gap: 8px; border-bottom: 1px solid var(--border); font-size: 0.8rem; color: var(--text-dim);
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot.r { background: #f25f57; } .dot.y { background: #fbbe2e; } .dot.g { background: #57c038; }
+  .titlebar .title { margin-left: 10px; }
+
+  .layout { display: grid; grid-template-columns: 230px 1fr; min-height: 430px; }
+  .sidebar {
+    background: var(--bg-deep); border-right: 1px solid var(--border);
+    padding: 12px 8px; font-size: 0.84rem;
+  }
+  .sidebar .label { color: var(--text-dim); font-size: 0.68rem; letter-spacing: 1px; padding: 0 8px 8px; }
+  .tree { list-style: none; }
+  .tree li { padding: 3px 8px; border-radius: 5px; white-space: nowrap; color: var(--text); }
+  .tree li.dim { color: var(--text-dim); }
+  .tree li.active-file { background: var(--accent-dim); color: #fff; }
+  .tree li:hover:not(.active-file) { background: var(--bg-hover); }
+  .tree .i1 { padding-left: 22px; } .tree .i2 { padding-left: 36px; } .tree .i3 { padding-left: 50px; }
+  .badge {
+    background: var(--orange); color: #1a1a1a; border-radius: 9px;
+    font-size: 0.68rem; padding: 0 6px; margin-left: 6px; font-weight: 600;
+  }
+  .ai-file { color: var(--accent) !important; font-family: var(--mono); font-size: 0.78rem; }
+
+  .note { padding: 18px 26px; overflow: auto; }
+  .note-tab {
+    color: var(--text-dim); font-size: 0.78rem; border-bottom: 1px solid var(--border);
+    padding-bottom: 8px; margin-bottom: 14px;
+  }
+  .props {
+    border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px;
+    font-size: 0.8rem; margin-bottom: 16px; display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr)); gap: 4px 18px;
+  }
+  .props span { color: var(--text-dim); }
+  .props .tag {
+    background: rgba(167,139,250,.15); color: var(--accent); border-radius: 8px;
+    padding: 0 7px; font-size: 0.75rem; margin-right: 4px;
+  }
+  .note h1 { font-size: 1.35rem; margin-bottom: 12px; }
+  .note p { line-height: 1.6; margin-bottom: 12px; font-size: 0.92rem; }
+  .formula {
+    text-align: center; font-family: "Times New Roman", serif; font-style: italic;
+    font-size: 1.25rem; margin: 18px 0; color: #eee;
+  }
+  .formula .frac { display: inline-block; vertical-align: middle; text-align: center; margin: 0 4px; }
+  .formula .frac .top { display: block; border-bottom: 1px solid #eee; padding: 0 8px 2px; }
+  .formula .frac .bot { display: block; padding: 2px 8px 0; }
+  .img-embed {
+    border: 1px dashed var(--border); border-radius: 8px; padding: 26px;
+    text-align: center; color: var(--text-dim); font-size: 0.82rem;
+    background: var(--bg-deep); margin: 14px 0; max-width: 380px;
+  }
+  .img-embed .picto { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+  .task { display: flex; align-items: center; gap: 9px; font-size: 0.92rem; margin: 10px 0; }
+  .task .box { width: 15px; height: 15px; border: 1.5px solid var(--text-dim); border-radius: 4px; }
+  .due {
+    background: rgba(224,164,88,.15); color: var(--orange); border-radius: 6px;
+    padding: 1px 8px; font-size: 0.78rem;
+  }
+  .wikilink { color: var(--accent); cursor: pointer; }
+  .wikilink:hover { text-decoration: underline; }
+
+  /* ===== Terminal ===== */
+  .terminal {
+    background: #121212; border-top: 1px solid var(--border);
+    font-family: var(--mono); font-size: 0.8rem; line-height: 1.65; padding: 12px 16px;
+  }
+  .terminal .t-head { color: var(--text-dim); font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 8px; }
+  .terminal .user { color: #fff; }
+  .terminal .user::before { content: "❯ "; color: var(--green); }
+  .terminal .claude { color: var(--text-dim); }
+  .terminal .claude::before { content: "⏺ "; color: var(--accent); }
+  .terminal .claude-cont { color: var(--text-dim); padding-left: 18px; }
+  .terminal .ok { color: var(--green); }
+  .terminal .path { color: var(--accent); }
+
+  /* ===== Storyboard ===== */
+  .story { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .step {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 20px; width: 100%; max-width: 620px;
+  }
+  .step .n {
+    color: var(--accent); font-size: 0.72rem; letter-spacing: 1.5px;
+    font-weight: 700; display: block; margin-bottom: 8px;
+  }
+  .step p { font-size: 0.88rem; color: var(--text); line-height: 1.55; margin-bottom: 10px; }
+  .step .inner {
+    background: var(--bg-deep); border: 1px solid var(--border); border-radius: 8px;
+    font-family: var(--mono); font-size: 0.78rem; padding: 10px 14px; line-height: 1.7;
+  }
+  .arrow { color: var(--accent); font-size: 1.3rem; padding: 8px 0; }
+  .drag { color: var(--text-dim); }
+  .drag b { color: var(--orange); font-weight: 600; }
+
+  /* ===== Cahier-maître ===== */
+  .dv-note { padding: 22px 30px; }
+  .dv-note h1 { font-size: 1.3rem; margin-bottom: 4px; }
+  .dv-note .gen { color: var(--text-dim); font-size: 0.78rem; margin-bottom: 18px; }
+  .dv-note h2 { font-size: 1rem; margin: 20px 0 10px; color: var(--accent); }
+  table.dv { border-collapse: collapse; width: 100%; max-width: 560px; font-size: 0.86rem; }
+  table.dv th, table.dv td { border: 1px solid var(--border); padding: 7px 12px; text-align: left; }
+  table.dv th { background: var(--bg-deep); color: var(--text-dim); font-weight: 600; }
+  .status { border-radius: 6px; padding: 1px 8px; font-size: 0.78rem; }
+  .status.run { background: rgba(108,192,112,.15); color: var(--green); }
+  .status.pause { background: rgba(154,154,154,.15); color: var(--text-dim); }
+  .late { color: var(--red); font-size: 0.8rem; margin-left: 8px; }
+  .feed { list-style: none; font-size: 0.86rem; color: var(--text-dim); }
+  .feed li { padding: 3px 0; }
+  .feed li::before { content: "• "; color: var(--accent); }
+
+  /* ===== Page type ===== */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+  .pane {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  }
+  .pane .p-head {
+    background: var(--bg-deep); border-bottom: 1px solid var(--border);
+    padding: 8px 14px; font-size: 0.74rem; color: var(--text-dim); letter-spacing: 1px;
+  }
+  .pane pre {
+    font-family: var(--mono); font-size: 0.76rem; line-height: 1.7; padding: 14px 16px;
+    overflow-x: auto; color: var(--text);
+  }
+  .pane pre .fm { color: var(--orange); }
+  .pane pre .cm { color: var(--text-dim); }
+  .pane pre .lk { color: var(--accent); }
+  .annot { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .annot .a {
+    border-left: 3px solid var(--accent); background: var(--bg-deep);
+    border-radius: 0 8px 8px 0; padding: 9px 13px; font-size: 0.82rem; line-height: 1.5;
+  }
+  .annot .a b { color: var(--accent); }
+  .annot .a.machine { border-left-color: var(--green); }
+  .annot .a.machine b { color: var(--green); }
+
+  footer {
+    max-width: 1100px; margin: 26px auto 0; color: var(--text-dim);
+    font-size: 0.78rem; text-align: center;
+  }
+  footer code { font-family: var(--mono); color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <h1>Maquette — <span>Note AI</span></h1>
+  <p>Stade conception (2026-06-10). Source de vérité des conventions : <code>CONCEPT.md §12</code> ·
+     référence versionnée : <code>maquette/MAQUETTE.md</code>. Rien ici n'est fonctionnel — c'est à quoi Note AI ressemblera.</p>
+</div>
+
+<div class="tabs">
+  <button class="active" data-view="v1">1 · Fenêtre Obsidian</button>
+  <button data-view="v2">2 · Flux « drop → range »</button>
+  <button data-view="v3">3 · Cahier-maître</button>
+  <button data-view="v4">4 · Page type</button>
+</div>
+
+<!-- ============ VUE 1 — FENÊTRE ============ -->
+<div class="view active" id="v1">
+  <div class="window">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="title">Note-AI-Vault — Obsidian</span>
+    </div>
+    <div class="layout">
+      <div class="sidebar">
+        <div class="label">EXPLORATEUR</div>
+        <ul class="tree">
+          <li>📓 Cahier-maître</li>
+          <li>📥 _inbox<span class="badge">1</span></li>
+          <li>▾ 📁 Projets</li>
+          <li class="i1">▾ 📁 Maison</li>
+          <li class="i2 dim">_projet.md</li>
+          <li class="i2 ai-file">_index.ai.md</li>
+          <li class="i2">▾ 📁 Cuisine</li>
+          <li class="i3 active-file">2026-06-10-plan-cuisine</li>
+          <li class="i3">devis-armoires</li>
+          <li class="i3 dim">captures/</li>
+          <li class="i2">▸ 📁 Jardin</li>
+          <li class="i1">▸ 📁 Atelier</li>
+        </ul>
+      </div>
+      <div class="note">
+        <div class="note-tab">Projets / Maison / Cuisine / <b>Plan cuisine</b></div>
+        <div class="props">
+          <div><span>projet :</span> Maison/Cuisine</div>
+          <div><span>statut :</span> en-cours</div>
+          <div><span>date :</span> 2026-06-10</div>
+          <div><span>tags :</span> <span class="tag">cuisine</span><span class="tag">structure</span></div>
+        </div>
+        <h1>Plan cuisine</h1>
+        <p>Poutre porteuse, charge répartie <i>q</i> sur longueur <i>L</i>. Flèche maximale :</p>
+        <div class="formula">
+          δ<sub>max</sub> =
+          <span class="frac"><span class="top">5&thinsp;q&thinsp;L<sup>4</sup></span><span class="bot">384&thinsp;E&thinsp;I</span></span>
+        </div>
+        <div class="img-embed"><span class="picto">🖼</span>captures/plan-v2.png<br>« plan révisé de la poutre » — rangée &amp; légendée par Claude</div>
+        <div class="task"><span class="box"></span> Valider la section IPN <span class="due">📅 2026-06-20</span></div>
+        <p>Voir aussi <span class="wikilink">[[devis-armoires]]</span></p>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="t-head">TERMINAL — CLAUDE CODE INTERACTIF (SUR L'ABONNEMENT)</div>
+      <div class="user">range la dernière capture dans Maison/Cuisine, c'est le plan révisé de la poutre</div>
+      <div class="claude">Je propose :</div>
+      <div class="claude-cont">1. déplacer <span class="path">_inbox/capture-2026-06-10-1432.png</span> → <span class="path">Projets/Maison/Cuisine/captures/plan-v2.png</span></div>
+      <div class="claude-cont">2. mettre à jour « Plan cuisine » (légende + lien — pas d'OCR)</div>
+      <div class="claude-cont">3. régénérer <span class="path">_index.ai.md</span> &nbsp;&nbsp;— OK ? (o/n)</div>
+      <div class="user">o</div>
+      <div class="claude-cont"><span class="ok">✓ Rangé.</span> 1 image, 1 page mise à jour, index régénéré (3 entrées).</div>
+    </div>
+  </div>
+  <p class="caption"><b>Le double accès en une image :</b> la page du centre s'édite à la main, et Claude la
+  modifie depuis le terminal du bas — <b>mêmes fichiers Markdown</b>. Le mode « propose puis applique » est
+  visible dans la session : Claude montre son plan, l'utilisateur valide.</p>
+</div>
+
+<!-- ============ VUE 2 — FLUX ============ -->
+<div class="view" id="v2">
+  <div class="story">
+    <div class="step">
+      <span class="n">ÉTAPE 1 — CAPTURER (ZÉRO RÉFLEXION)</span>
+      <p>Réunion chantier : tu photographies le plan annoté, puis tu le glisses dans la boîte de réception.</p>
+      <div class="inner drag">plan-annoté.jpg <b>── drag &amp; drop ──▶</b> _inbox/<br>
+      _inbox/<br>└─ capture-2026-06-10-1432.png&nbsp;&nbsp;&nbsp;(1)</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="step">
+      <span class="n">ÉTAPE 2 — ORDONNER (LANGAGE NATUREL)</span>
+      <p>Quand tu veux — pas obligé tout de suite — tu ouvres le terminal et tu parles normalement.</p>
+      <div class="inner"><span style="color:#6cc070">❯</span> range la dernière capture dans Maison/Cuisine,<br>&nbsp;&nbsp;c'est le plan révisé de la poutre</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="step">
+      <span class="n">ÉTAPE 3 — PROPOSER PUIS APPLIQUER (CONFIANCE)</span>
+      <p>Claude n'agit pas en douce : il montre son rangement, tu valides.</p>
+      <div class="inner"><span style="color:#a78bfa">⏺</span> Je propose :<br>
+      &nbsp;&nbsp;• déplacer + renommer → captures/plan-v2.png<br>
+      &nbsp;&nbsp;• légende : « plan révisé de la poutre » (pas d'OCR)<br>
+      &nbsp;&nbsp;• lier depuis [[2026-06-10-plan-cuisine]]<br>
+      &nbsp;&nbsp;• régénérer _index.ai.md<br>
+      &nbsp;&nbsp;OK ?&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6cc070">❯</span> o</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="step">
+      <span class="n">ÉTAPE 4 — RÉSULTAT (CLASSÉ, LIÉ, INDEXÉ)</span>
+      <p>Quelques secondes plus tard : tout est à sa place, et Git versionne en silence.</p>
+      <div class="inner">Projets/Maison/Cuisine/<br>
+      ├─ 2026-06-10-plan-cuisine.md&nbsp;&nbsp;&nbsp;<span style="color:#6cc070">← mise à jour</span><br>
+      └─ captures/plan-v2.png&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6cc070">← rangée</span><br>
+      _index.ai.md régénéré&nbsp;&nbsp;·&nbsp;&nbsp;_inbox/ vide (0)</div>
+    </div>
+  </div>
+  <p class="caption"><b>Le scénario cœur</b> (<code style="font-family:var(--mono)">CONCEPT.md §12.4</code>) :
+  la capture est instantanée, le rangement se fait à froid, en langage naturel.</p>
+</div>
+
+<!-- ============ VUE 3 — CAHIER-MAÎTRE ============ -->
+<div class="view" id="v3">
+  <div class="window">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="title">Cahier-maître — Note-AI-Vault</span>
+    </div>
+    <div class="dv-note">
+      <h1>Cahier maître — vue d'ensemble</h1>
+      <div class="gen">Tables générées par Dataview + plugin Tasks — toujours à jour, zéro maintenance.</div>
+      <h2>Projets</h2>
+      <table class="dv">
+        <tr><th>Projet</th><th>Statut</th><th>Prochaine échéance</th><th>Tâches ouvertes</th></tr>
+        <tr><td>Maison</td><td><span class="status run">en-cours</span></td><td>2026-06-20</td><td>4</td></tr>
+        <tr><td>Atelier</td><td><span class="status pause">en-pause</span></td><td>—</td><td>2</td></tr>
+      </table>
+      <h2>Tâches en retard</h2>
+      <div class="task"><span class="box"></span> Commander l'IPN <span class="due">📅 2026-06-08</span><span class="late">⚠ +2 j (Maison/Cuisine)</span></div>
+      <h2>Activité récente</h2>
+      <ul class="feed">
+        <li>2026-06-10 — plan-v2.png rangé dans Maison/Cuisine</li>
+        <li>2026-06-09 — devis-armoires.md réécrit par Claude</li>
+      </ul>
+    </div>
+  </div>
+  <p class="caption"><b>Le tableau de bord vivant :</b> rien ici n'est tenu à la main. Les tables sont générées
+  depuis le frontmatter de toutes les pages. Côté chat, la même information sans rien ouvrir :
+  <i>« rappelle-moi où j'en suis sur la cuisine »</i> → Claude lit <code style="font-family:var(--mono)">_index.ai.md</code> +
+  <code style="font-family:var(--mono)">_projet.md</code> (quelques lignes, pas tout le contenu).</p>
+</div>
+
+<!-- ============ VUE 4 — PAGE TYPE ============ -->
+<div class="view" id="v4">
+  <div class="split">
+    <div class="pane">
+      <div class="p-head">SUR DISQUE — 2026-06-10-plan-cuisine.md (Markdown brut)</div>
+      <pre><span class="fm">---
+titre: Plan cuisine
+projet: Maison/Cuisine
+date: 2026-06-10
+statut: en-cours
+tags: [cuisine, structure]
+resume: Calcul de la poutre porteuse
+        + relevé des dimensions.
+---</span>
+
+# Plan cuisine
+
+Poutre porteuse, charge répartie q sur
+longueur L. Flèche maximale :
+
+$$\delta_{max} = \frac{5\,q\,L^4}{384\,E\,I}$$
+
+<span class="lk">![[captures/plan-v2.png]]</span>
+
+- [ ] Valider la section IPN 📅 2026-06-20
+- Voir aussi <span class="lk">[[devis-armoires]]</span></pre>
+    </div>
+    <div class="pane">
+      <div class="p-head">CE QUE CHAQUE ZONE FAIT</div>
+      <div class="annot">
+        <div class="a"><b>Frontmatter YAML</b> — la matière première de la machine : Dataview et le
+        cahier-maître lisent <code>statut</code>/<code>tags</code> ; le <code>resume:</code> est
+        <b>LA</b> ligne que Claude récolte pour bâtir l'index.</div>
+        <div class="a"><b>LaTeX inline</b> — rendu nativement par Obsidian, mélangé au Markdown dans le
+        même fichier. Acquis V1 pour le carnet technique.</div>
+        <div class="a"><b>Embed <code>![[…]]</code></b> — l'image vit dans <code>captures/</code>, rangée et
+        légendée par Claude au moment du drop (pas d'OCR : on range, on ne lit pas).</div>
+        <div class="a"><b>Tâche datée</b> — case à cocher Markdown standard ; le plugin Tasks la centralise
+        dans le cahier-maître, Claude peut la lister/trier par échéance.</div>
+        <div class="a"><b>Wikilink <code>[[…]]</code></b> — backlink automatique côté cible : la couche
+        « réseau » façon NotebookLM, posée par l'humain ou par Claude.</div>
+        <div class="a machine"><b>La couche machine — <code>_index.ai.md</code></b> — ce que Claude lit
+        <b>à la place</b> du contenu complet :<br><br>
+        <code style="font-size:.9em">- Cuisine/2026-06-10-plan-cuisine.md — calcul poutre porteuse + dimensions [cuisine,structure] (en-cours)</code><br><br>
+        Trois lignes au lieu de trois pages → économie de tokens.</div>
+      </div>
+    </div>
+  </div>
+  <p class="caption"><b>Une page = un fichier Markdown lisible sans aucun logiciel.</b> C'est ce qui rend le
+  double accès possible : l'humain et Claude travaillent sur exactement la même matière.</p>
+</div>
+
+<footer>Maquette Note AI — concept §12 · Obsidian (interface) + Claude Code interactif (adjoint) + conventions (le livrable)</footer>
+
+<script>
+  document.querySelectorAll('.tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.view).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

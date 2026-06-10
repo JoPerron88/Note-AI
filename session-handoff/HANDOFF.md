@@ -18,12 +18,13 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
   les documents de concept.
 - ✅ **`CLAUDE.md` créé à la racine** (2026-06-10) : instructions projet pour les futures
   sessions — décisions arrêtées, conventions du vault, carte des documents.
+- ✅ **Maquette livrée** (2026-06-10) dans `maquette/` : `MAQUETTE.md` (ASCII, la référence
+  versionnée) + `maquette.html` (rendu navigateur, zéro dépendance, à ouvrir tel quel).
+  4 vues : fenêtre Obsidian complète, flux « drop → range », cahier-maître, page type.
 
 ## Ce qui était prévu ensuite
-Deux pistes en attente (dans l'ordre logique) :
-1. **La maquette** — passer du texte à un visuel de l'interface (le vault, le terminal-chat, le
-   flux « drop → range »).
-2. **Scope V1** puis construction — voir `CONCEPT.md` §12.6 (périmètre V1 déjà ébauché).
+Une piste en attente :
+1. **Scope V1** puis construction du vault — voir `CONCEPT.md` §12.6 (périmètre V1 déjà ébauché).
 
 ## Reprendre sur une machine neuve (le projet)
 1. `git clone https://github.com/JoPerron88/Note-AI.git` (ou ouvrir le dossier iCloud).
