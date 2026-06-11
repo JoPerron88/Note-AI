@@ -2,7 +2,7 @@
 titre: Cahier maître
 date: {{DATE}}
 tags: [note-ai, tableau-de-bord]
-resume: Vue d'ensemble de tous les projets du coffre.
+résumé: Vue d'ensemble de tous les projets du coffre.
 ---
 
 # Cahier maître — vue d'ensemble
@@ -21,9 +21,10 @@ resume: Vue d'ensemble de tous les projets du coffre.
 
 ## Activité récente
 
-<!-- Les 5 dernières actions de rangement, plus récente en premier. -->
+<!-- Les 5 dernières actions de rangement, plus récente en premier.
+     Dates en toutes lettres (ex. : 8 septembre 2025). -->
 
-- {{DATE}} — coffre initialisé par Note AI
+- {{DATE_LONGUE}} — coffre initialisé par Note AI
 
 ---
 

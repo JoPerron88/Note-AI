@@ -1,6 +1,6 @@
 {
   "name": "note-ai",
-  "description": "L'adjoint maître des notes pour coffres Obsidian : range, réécrit, retrouve et suit les projets — structure façon OneNote, _inbox, index optimisé tokens. Autosuffisant : aucune dépendance à d'autres plugins ou skills Claude Code.",
+  "description": "L'adjoint maître des notes pour coffres Obsidian : range, réécrit, retrouve et suit les projets — structure façon OneNote, boîte de réception (_boîte/), index optimisé tokens. Autosuffisant : aucune dépendance à d'autres plugins ou skills Claude Code.",
   "version": "0.1.0",
   "author": {
     "name": "Jonathan Perron"

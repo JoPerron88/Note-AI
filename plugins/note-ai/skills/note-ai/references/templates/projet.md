@@ -4,7 +4,7 @@ projet: {{NOM_PROJET}}
 date: {{DATE}}
 statut: en-cours
 tags: [projet]
-resume: {{OBJECTIF_EN_UNE_LIGNE}}
+résumé: {{OBJECTIF_EN_UNE_LIGNE}}
 ---
 
 # {{NOM_PROJET}} — cahier de projet
@@ -13,15 +13,16 @@ resume: {{OBJECTIF_EN_UNE_LIGNE}}
 
 {{OBJECTIF_EN_UNE_LIGNE}}
 
-## Jalons & échéances
+## Jalons et échéances
 
-- [ ] {{PREMIER_JALON}} 📅 {{ECHEANCE}}
+- [ ] {{PREMIER_JALON}} 📅 {{ECHEANCE_ISO}}
 
 ## Décisions notables
 
-- {{DATE}} — projet créé.
+- {{DATE_LONGUE}} — projet créé.
 
 ## Notes de suivi
 
 <!-- L'adjoint ajoute ici l'essentiel de l'évolution du projet :
-     ce qui change, ce qui bloque, ce qui est décidé. -->
+     ce qui change, ce qui bloque, ce qui est décidé.
+     Dates en toutes lettres dans la prose. -->

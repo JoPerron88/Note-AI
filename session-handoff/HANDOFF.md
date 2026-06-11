@@ -26,6 +26,22 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
   `references/conventions.md` (le §12 distillé), `references/templates/` (`CLAUDE-coffre.md`
   déposé à l'init = adjoint par défaut, `Cahier-maitre.md`, `projet.md`). README d'installation
   refait. Manifestes validés (JSON + chemins + frontmatter ≤ 1024 car.).
+- ✅ **Standard fr-CA arrêté et appliqué** (2026-06-10) : nommage hybride (dossiers accentués,
+  pages en slug), frontmatter en français accentué (`titre, projet, date, statut, tags, résumé,
+  échéance` ; statuts `à-faire/en-cours/en-pause/terminé`), `_inbox/` → `_boîte/`, typographie
+  OQLF + vocabulaire québécois à la réécriture, dates longues en prose (ISO pour la machine),
+  orthographe traditionnelle.
+- ✅ **Répertoire des gens** (2026-06-10) : `Gens/` à la racine du coffre, une fiche par
+  personne au nom humain (`Marie Tremblay.md`, avec `aliases:`), `Gens/_moi.md` = fiche du
+  **propriétaire** créée par mini-entrevue à l'init (l'adjoint sait qui est son humain et
+  adapte : travail → organisations ; privé → cercles). Détection au rangement (propose la
+  fiche), garde-fou : factuel seulement, jamais de déductions.
+- ✅ **Couche machine `.note-ai/` + grille d'effort** (2026-06-10) : dossier caché (invisible
+  dans Obsidian) = territoire de l'adjoint — `carte.md` (lue en premier), `memoire.md`,
+  `journal.md`, `index/<Notebook>.md` + `index/gens.md` (**les index ont déménagé ici**),
+  format libre permis. Grille d'effort léger/moyen/lourd ; au lourd, mécanique de masse en
+  sous-agent **Haiku** (jamais de jugement en sous-agent). §liens réécrit : résolution par nom,
+  `aliases:`, backlinks = `grep "[[Nom"` (n'existent pas sur disque).
 - Contexte d'usage : l'utilisateur a installé **Obsidian + Claude sidebar** (Claude Code
   interactif dans Obsidian) — c'est le terrain de test réel.
 
