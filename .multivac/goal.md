@@ -19,9 +19,10 @@ le même vault.
 ## Contraintes à ne jamais perdre de vue
 
 - **Local d'abord** : données chez l'utilisateur ; sauvegarde + historique (Git en coulisse).
-- **PAS l'API payante Claude.** Pilotage via **Claude Code interactif** (sur l'abonnement) ;
-  **Ollama** en repli local. Le mode headless `claude -p` est exclu (facturé au tarif API depuis
-  le 15/06/2026).
+- **PAS l'API payante Claude.** Pilotage via **Claude Code interactif** (sur l'abonnement)
+  **OU Gemini CLI** (palier gratuit) — moteurs **à égalité** depuis le 2026-06-11, même coffre,
+  même adjoint ; **Ollama** en repli local. Le mode headless `claude -p` est exclu (facturé au
+  tarif API depuis le 15/06/2026).
 - **Double accès** : notes en Markdown lisibles et modifiables à la main ET par l'IA, sur les
   mêmes fichiers. Maths **LaTeX inline** mélangées au Markdown.
 - **Couche machine optimisée tokens** : `_index.ai.md` par notebook + liens `[[…]]`, pour que

@@ -1,8 +1,9 @@
 # CLAUDE.md — ce coffre est un Note AI
 
-> Généré par Note AI. Ce fichier fait de toute session Claude Code ouverte dans
-> ce coffre **l'adjoint maître des notes** — il se suffit à lui-même, aucun
-> plugin Claude Code requis.
+> Généré par Note AI. Ce fichier fait de toute session d'agent ouverte dans ce
+> coffre — **Claude Code ou Gemini CLI**, c'est le même adjoint — **le maître
+> des notes**. Il se suffit à lui-même, aucun plugin ni skill requis.
+> (Gemini le lit grâce à `.gemini/settings.json`, déposé à l'init.)
 
 ## Ton rôle
 
@@ -19,8 +20,9 @@ adapter ton classement.
 
 ## Démarrage de session — l'ordre de lecture
 
-**D'abord, ancre-toi.** Claude sidebar peut t'ouvrir avec le répertoire courant
-sur un sous-dossier (clic droit sur `Projets/Maison/`). La racine du coffre =
+**D'abord, ancre-toi.** Ton terminal (Claude sidebar, Gemini CLI…) peut t'ouvrir
+avec le répertoire courant sur un sous-dossier (clic droit sur `Projets/Maison/`).
+La racine du coffre =
 le dossier qui contient `.obsidian/` (remonte si besoin). **Ancre tous tes
 chemins dessus** (`.note-ai/`, `Gens/`, `Cahier-maître.md`, `Projets/`) — jamais
 sur le répertoire courant. Puis :
@@ -60,11 +62,11 @@ range donc jamais de contenu humain).
 |---|---|---|
 | **Léger** (défaut) | Ranger 1 élément, créer 1 note, question simple | Carte + index concerné ; proposition en 1 ligne |
 | **Moyen** | Boîte pleine, résumé de projet, recherche transversale | Indexes + fichiers ciblés ; plan bref |
-| **Lourd** | Synthèse multi-notebooks, réorganisation, reconstruction d'index | **Annonce l'ampleur d'abord** ; mécanique de masse → sous-agent sur modèle économique (Haiku) ; jugement au modèle principal |
+| **Lourd** | Synthèse multi-notebooks, réorganisation, reconstruction d'index | **Annonce l'ampleur d'abord** ; mécanique de masse → sous-agent sur modèle économique **si ton harnais en offre** (Claude Code : outil Agent + Haiku) ; sinon (Gemini CLI) : par lots, en annonçant la progression ; jugement au modèle principal |
 
 En cas de doute : niveau du dessous, escalade si insuffisant. Jamais de
-jugement (classement, réécriture, fiches) en sous-agent. Le modèle de la
-session appartient à l'utilisateur (`/model`).
+jugement (classement, réécriture, fiches) en sous-agent. Le choix du modèle
+de session appartient à l'utilisateur.
 
 ## Les conventions du coffre
 
@@ -72,8 +74,10 @@ session appartient à l'utilisateur (`/model`).
   `Projets/<Notebook>/` (avec `_projet.md`) · `<Section>/` · `captures/`
   (images) · `Cahier-maître.md` + `Cahier-maître.base` (tableau de bord
   global) · `Gens/` (le répertoire des personnes) · `.note-ai/` (ta couche
-  machine). **Ne touche jamais à `.obsidian/`** — seule exception : fusionner
-  le typage des propriétés dans `.obsidian/types.json` (voir ci-dessous).
+  machine) · `.gemini/` (compat Gemini CLI : réglages + copie du skill — ne
+  pas y toucher à la main). **Ne touche jamais à `.obsidian/`** — seule
+  exception : fusionner le typage des propriétés dans `.obsidian/types.json`
+  (voir ci-dessous).
 - **Nommage hybride** : dossiers = noms humains, accents permis (`Maison`,
   `Échéancier`) ; pages et images = slugs sans accent (`AAAA-MM-JJ-slug.md`,
   `plan-v2.png`). Le vrai titre accentué vit dans le frontmatter.
@@ -145,6 +149,7 @@ Avant toute écriture ou déplacement : montre ton plan en 2-3 lignes, attends l
 OK. Si l'utilisateur te dit d'agir sans demander, respecte-le pour la session —
 et note-le dans `.note-ai/memoire.md`.
 
-⚠️ **En mode YOLO** (Claude sidebar lancé avec `--dangerously-skip-permissions`),
-aucune barrière système ne te retient : cette discipline est alors le **seul**
-garde-fou. La garder stricte — ne l'assouplir que sur consigne explicite.
+⚠️ **En mode YOLO** (`--dangerously-skip-permissions` sous Claude Code, `--yolo`
+sous Gemini CLI), aucune barrière système ne te retient : cette discipline est
+alors le **seul** garde-fou. La garder stricte — ne l'assouplir que sur
+consigne explicite.

@@ -28,6 +28,9 @@
 │  └─ index/                       ← les index condensés (généré)
 │     ├─ <Notebook>.md             ← un par notebook
 │     └─ gens.md                   ← l'infrastructure humaine
+├─ .gemini/                        ← compat GEMINI CLI (§13) — le coffre est bi-moteur
+│  ├─ settings.json                ← fait lire CLAUDE.md à Gemini (context.fileName)
+│  └─ skills/note-ai/              ← copie du skill : voyage avec le coffre
 └─ .obsidian/                      ← config Obsidian — NE PAS TOUCHER, sauf…
    └─ types.json                   ← …le typage des propriétés, fusionné à l'init (§3)
 ```
@@ -142,14 +145,17 @@ Toutes les requêtes ne se valent pas. Avant d'agir, jauger :
 |---|---|---|
 | **Léger** (défaut) | Ranger 1 élément, créer 1 note, question simple | Lire `carte.md` + l'index concerné seulement ; proposition en 1 ligne |
 | **Moyen** | Boîte pleine, résumé de projet, recherche transversale | Indexes + fichiers ciblés ; plan bref avant d'agir |
-| **Lourd** | Synthèse multi-notebooks, réorganisation, reconstruction des index | **Annoncer l'ampleur d'abord** ; le mécanique de masse part en **sous-agent sur modèle économique (Haiku)** ; le jugement reste au modèle principal |
+| **Lourd** | Synthèse multi-notebooks, réorganisation, reconstruction des index | **Annoncer l'ampleur d'abord** ; le mécanique de masse part en **sous-agent sur modèle économique** si le harnais en offre, sinon **par lots** ; le jugement reste au modèle principal |
 
 - En cas de doute : niveau du dessous, puis escalader si ça ne suffit pas.
-- **Sous-agents (outil Agent natif)** : seulement au niveau lourd, seulement
-  pour du **mécanique** (régénérer tous les index, corriger des liens en
-  masse, inventorier) — brief court, résultat vérifié au retour. **Jamais de
-  jugement en sous-agent** (classement, réécriture, fiches de personnes).
-- Le modèle de la session principale appartient à l'utilisateur (`/model`) —
+- **Sous-agents** : seulement au niveau lourd, seulement pour du **mécanique**
+  (régénérer tous les index, corriger des liens en masse, inventorier) —
+  brief court, résultat vérifié au retour. **Jamais de jugement en sous-agent**
+  (classement, réécriture, fiches de personnes). Disponibilité selon le
+  moteur : Claude Code = outil Agent + modèle économique (Haiku) ;
+  Gemini CLI = pas de sous-agents → traiter par lots en annonçant la
+  progression.
+- Le choix du modèle de la session principale appartient à l'utilisateur —
   l'adjoint ne le change pas, il adapte ses moyens.
 
 ## 6. Protocole `_boîte/` (la boîte de réception)
@@ -282,3 +288,25 @@ Trois couches, du plancher au confort — **ne supprimer aucune** :
 Objectif du projet, statut global, jalons/échéances, décisions notables.
 Mis à jour quand le projet évolue ; lu (avec l'index du notebook) pour
 répondre à « où en suis-je ». Template : `templates/projet.md`.
+
+## 13. Multi-moteurs — Claude Code ET Gemini CLI, à égalité
+
+Le même coffre fonctionne sous les deux moteurs. Trois principes :
+
+- **Une seule source de vérité** : `CLAUDE.md` est LE fichier d'adjoint,
+  rédigé **neutre-moteur** (jamais d'instruction qui n'a de sens que pour un
+  moteur ; les différences se conditionnent : « si ton harnais offre X… »).
+  Gemini le lit grâce à `<coffre>/.gemini/settings.json`
+  (`{"context": {"fileName": ["CLAUDE.md", "GEMINI.md"]}}` — anciennes
+  versions : clé plate `contextFileName`). **Fusionner** ce réglage à l'init,
+  même règle que `types.json` : ne jamais écraser les réglages existants.
+- **Le skill voyage avec le coffre** : à l'init, le skill complet est copié
+  dans `<coffre>/.gemini/skills/note-ai/` (même format SKILL.md que Claude
+  Code, activé via `activate_skill`). Une machine neuve avec Gemini CLI n'a
+  **rien à installer** : ouvrir le coffre suffit. Côté Claude Code, le skill
+  vient du plugin (marketplace) — la copie du coffre ne sert qu'à Gemini.
+- **Différences de moyens connues** : sous-agents (Claude : oui, Haiku ;
+  Gemini : non → par lots) · mode YOLO (`--dangerously-skip-permissions` /
+  `--yolo`) · le bootstrap d'un coffre **vierge** demande le skill (plugin
+  Claude ou copie dans `~/.gemini/skills/`) — un coffre déjà initialisé n'a
+  besoin de rien.

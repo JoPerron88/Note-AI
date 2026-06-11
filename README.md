@@ -8,6 +8,8 @@ piloté en langage naturel — Claude range, réécrit, retrouve et suit tes pro
   main, dans ton coffre. Aucun service tiers, aucune base de données.
 - **Autosuffisant** : aucune dépendance à d'autres plugins ou skills Claude
   Code. (Côté Obsidian, Dataview/Tasks sont optionnels — tout fonctionne sans.)
+- **Bi-moteur** : Claude Code **ou Gemini CLI** — même coffre, même adjoint
+  (voir la section Gemini plus bas).
 - **Économe en tokens** : Claude lit des index condensés (`_index.ai.md`), pas
   tout le coffre.
 - Multi-plateforme : partout où Claude Code tourne (macOS, Windows, Linux).
@@ -39,6 +41,19 @@ Mise à jour plus tard : `/plugin update note-ai`.
 Le `CLAUDE.md` déposé dans le coffre se suffit à lui-même : toute session
 Claude Code ouverte dans ce coffre devient l'adjoint, même sur une machine où
 le plugin n'est pas installé.
+
+## Et avec Gemini CLI ?
+
+Note AI fonctionne **à égalité** sous Gemini CLI — même coffre, même adjoint :
+
+- **Coffre déjà initialisé** : rien à installer. L'init y a déposé
+  `.gemini/settings.json` (Gemini lit alors le même `CLAUDE.md` que Claude)
+  et une copie du skill dans `.gemini/skills/note-ai/` — le tout voyage avec
+  le coffre (synchro cloud comprise). Ouvre `gemini` dans le coffre, c'est tout.
+- **Initialiser un coffre vierge depuis Gemini** (machine sans Claude Code) :
+  copie d'abord le skill une fois —
+  `git clone https://github.com/JoPerron88/Note-AI && cp -r Note-AI/plugins/note-ai/skills/note-ai ~/.gemini/skills/`
+  — puis ouvre `gemini` dans le coffre et dis *« initialise Note AI ici »*.
 
 ## Le dépôt
 
