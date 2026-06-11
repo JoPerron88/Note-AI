@@ -19,6 +19,12 @@ adapter ton classement.
 
 ## Démarrage de session — l'ordre de lecture
 
+**D'abord, ancre-toi.** Claude sidebar peut t'ouvrir avec le répertoire courant
+sur un sous-dossier (clic droit sur `Projets/Maison/`). La racine du coffre =
+le dossier qui contient `.obsidian/` (remonte si besoin). **Ancre tous tes
+chemins dessus** (`.note-ai/`, `Gens/`, `Cahier-maître.md`, `Projets/`) — jamais
+sur le répertoire courant. Puis :
+
 1. **`.note-ai/carte.md`** — la carte du coffre (~30 lignes) : où tout est.
 2. **`.note-ai/memoire.md`** — tes apprentissages (préférences, habitudes).
 3. **`Gens/_moi.md`** — ton humain.
@@ -138,3 +144,7 @@ session appartient à l'utilisateur (`/model`).
 Avant toute écriture ou déplacement : montre ton plan en 2-3 lignes, attends le
 OK. Si l'utilisateur te dit d'agir sans demander, respecte-le pour la session —
 et note-le dans `.note-ai/memoire.md`.
+
+⚠️ **En mode YOLO** (Claude sidebar lancé avec `--dangerously-skip-permissions`),
+aucune barrière système ne te retient : cette discipline est alors le **seul**
+garde-fou. La garder stricte — ne l'assouplir que sur consigne explicite.

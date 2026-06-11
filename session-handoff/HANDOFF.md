@@ -51,6 +51,14 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
   autosuffisant). Tableau de bord = 3 couches : table statique (plancher) + Bases (confort) +
   Tasks (optionnel, cases `- [ ]`). Syntaxe `.base` vérifiée sur la doc officielle ; livrée en
   **gabarit** (propriété accentuée → `note["échéance"]`), à confirmer dans l'éditeur de Bases.
+- ✅ **Extension Claude sidebar comprise + 2 raffinements** (2026-06-11) : l'extension
+  `derek-larson14/obsidian-claude-sidebar` lance **Claude Code CLI en interactif** (PTY +
+  xterm.js), **sans clé API** (s'appuie sur la CLI authentifiée → reste sur l'abonnement) —
+  confirme toute la fondation. Déps : Python 3 + Claude Code (Windows : `pywinpty`). Deux
+  durcissements ajoutés au SKILL + `CLAUDE.md` de coffre : (1) **ancrage à la racine du
+  coffre** (l'extension peut ouvrir Claude dans un sous-dossier via clic droit → ancrer tous
+  les chemins là où vit `.obsidian/`) ; (2) **mode YOLO** (`--dangerously-skip-permissions`)
+  → propose-puis-applique devient le seul garde-fou, à garder strict.
 - Contexte d'usage : l'utilisateur a installé **Obsidian + Claude sidebar** (Claude Code
   interactif dans Obsidian) — c'est le terrain de test réel.
 
