@@ -42,6 +42,15 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
   format libre permis. Grille d'effort léger/moyen/lourd ; au lourd, mécanique de masse en
   sous-agent **Haiku** (jamais de jugement en sous-agent). §liens réécrit : résolution par nom,
   `aliases:`, backlinks = `grep "[[Nom"` (n'existent pas sur disque).
+- ✅ **Propriétés Obsidian exploitées** (2026-06-10) : (a) typage via
+  `templates/obsidian-types.json`, **fusionné** dans `.obsidian/types.json` à l'init
+  (`date`/`échéance` → Date, `tags`/`aliases` → Liste) — **seule exception** à « ne jamais
+  toucher `.obsidian/` » (fusion sans écraser) ; (b) Cahier-maître en **Base native**
+  (`templates/Cahier-maitre.base`, 2 vues : Projets + Échéances à venir), embarquée dans
+  `Cahier-maître.md` via `![[…#vue]]`, **bloc Dataview retiré** (Bases = cœur d'Obsidian =
+  autosuffisant). Tableau de bord = 3 couches : table statique (plancher) + Bases (confort) +
+  Tasks (optionnel, cases `- [ ]`). Syntaxe `.base` vérifiée sur la doc officielle ; livrée en
+  **gabarit** (propriété accentuée → `note["échéance"]`), à confirmer dans l'éditeur de Bases.
 - Contexte d'usage : l'utilisateur a installé **Obsidian + Claude sidebar** (Claude Code
   interactif dans Obsidian) — c'est le terrain de test réel.
 

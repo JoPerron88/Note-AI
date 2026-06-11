@@ -28,13 +28,20 @@ résumé: Vue d'ensemble de tous les projets du coffre.
 
 ---
 
-<!-- OPTIONNEL — si les plugins Obsidian Dataview et Tasks sont installés,
-     ces blocs remplacent avantageusement les tables statiques ci-dessus.
-     Sans ces plugins, ils s'affichent comme du code inerte : ignorer. -->
+## Vues vivantes (Obsidian Bases — natif)
 
-```dataview
-TABLE statut, date FROM "Projets" WHERE file.name = "_projet"
-```
+<!-- Vues base de données générées à partir des propriétés des notes, SANS
+     plugin communautaire (Bases fait partie du cœur d'Obsidian). Définies
+     dans Cahier-maître.base. Si rien ne s'affiche, ta version d'Obsidian est
+     antérieure à Bases : la table statique ci-dessus reste valable. -->
+
+![[Cahier-maître.base#Projets]]
+
+![[Cahier-maître.base#Échéances à venir]]
+
+<!-- OPTIONNEL — le plugin communautaire Tasks centralise les cases à cocher
+     `- [ ]` (que Bases ne lit pas, car Bases travaille sur les propriétés).
+     Sans Tasks, l'adjoint maintient la section « Tâches en retard » à la main. -->
 
 ```tasks
 not done

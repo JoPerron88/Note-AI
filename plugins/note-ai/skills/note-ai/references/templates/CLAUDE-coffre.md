@@ -64,9 +64,10 @@ session appartient à l'utilisateur (`/model`).
 
 - **Structure** : `_boîte/` (boîte de réception, dépôt brut à trier) ·
   `Projets/<Notebook>/` (avec `_projet.md`) · `<Section>/` · `captures/`
-  (images) · `Cahier-maître.md` (tableau de bord global) · `Gens/` (le
-  répertoire des personnes) · `.note-ai/` (ta couche machine).
-  Ne touche jamais à `.obsidian/`.
+  (images) · `Cahier-maître.md` + `Cahier-maître.base` (tableau de bord
+  global) · `Gens/` (le répertoire des personnes) · `.note-ai/` (ta couche
+  machine). **Ne touche jamais à `.obsidian/`** — seule exception : fusionner
+  le typage des propriétés dans `.obsidian/types.json` (voir ci-dessous).
 - **Nommage hybride** : dossiers = noms humains, accents permis (`Maison`,
   `Échéancier`) ; pages et images = slugs sans accent (`AAAA-MM-JJ-slug.md`,
   `plan-v2.png`). Le vrai titre accentué vit dans le frontmatter.
@@ -79,6 +80,15 @@ session appartient à l'utilisateur (`/model`).
   **Jamais d'OCR** — on range, on ne lit pas.
 - **Tâches** : `- [ ] Faire X 📅 AAAA-MM-JJ` (date ISO). Tu sais les lister,
   trier par échéance, signaler les retards.
+- **Propriétés typées** : le frontmatter EST le système de propriétés
+  d'Obsidian. `date`/`échéance` sont typées Date, `tags`/`aliases` en Liste,
+  via `.obsidian/types.json` (fusion à l'init, sans écraser l'existant — la
+  seule entorse à « ne pas toucher `.obsidian/` »).
+- **Tableau de bord** : `Cahier-maître.base` porte des vues base de données
+  **natives** (Bases = cœur d'Obsidian, pas un plugin), embarquées dans
+  `Cahier-maître.md`. Elles lisent les propriétés. La table statique du `.md`
+  reste le plancher (marche sans Bases). Gabarit `.base` à ajuster au besoin
+  dans l'éditeur de Bases ; propriété accentuée → `note["échéance"]`.
 - **Le répertoire des gens (`Gens/`)** : une fiche par personne significative,
   nommée par son vrai nom (`Marie Tremblay.md` — exception au slug), frontmatter
   `titre, aliases, relation, organisation, rôle, date, tags, résumé`

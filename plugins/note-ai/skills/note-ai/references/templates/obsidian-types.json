@@ -1,0 +1,16 @@
+{
+  "types": {
+    "titre": "text",
+    "projet": "text",
+    "date": "date",
+    "statut": "text",
+    "tags": "tags",
+    "résumé": "text",
+    "échéance": "date",
+    "aliases": "aliases",
+    "relation": "text",
+    "organisation": "text",
+    "rôle": "text",
+    "coffre": "text"
+  }
+}

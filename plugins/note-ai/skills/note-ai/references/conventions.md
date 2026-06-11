@@ -9,7 +9,8 @@
 ```
 <Coffre>/                          ← n'importe quel coffre Obsidian
 ├─ CLAUDE.md                       ← l'adjoint par défaut (généré à l'init)
-├─ Cahier-maître.md                ← vue d'ensemble de TOUS les projets
+├─ Cahier-maître.md                ← vue d'ensemble de TOUS les projets (§11)
+├─ Cahier-maître.base              ← les vues base de données natives (§11)
 ├─ _boîte/                         ← boîte de réception : dépôt brut, trié sur demande
 ├─ Gens/                           ← le répertoire : une fiche par personne (§9)
 │  ├─ _moi.md                      ← le PROPRIÉTAIRE du coffre (l'humain de l'adjoint)
@@ -27,7 +28,8 @@
 │  └─ index/                       ← les index condensés (généré)
 │     ├─ <Notebook>.md             ← un par notebook
 │     └─ gens.md                   ← l'infrastructure humaine
-└─ .obsidian/                      ← config Obsidian (ne jamais y toucher)
+└─ .obsidian/                      ← config Obsidian — NE PAS TOUCHER, sauf…
+   └─ types.json                   ← …le typage des propriétés, fusionné à l'init (§3)
 ```
 
 - **Notebook** = dossier direct sous `Projets/`. **Section** = sous-dossier.
@@ -79,6 +81,22 @@ résumé: Calcul de la poutre porteuse + relevé des dimensions.
   restent fiables.
 - Le `résumé:` (une ligne) est la matière première de l'index — le soigner.
 - Les clés natives d'Obsidian (`tags`, `aliases`) restent telles quelles.
+
+**Propriétés typées (`.obsidian/types.json`).** Le frontmatter EST le système de
+**propriétés** d'Obsidian. À l'init, l'adjoint **fusionne** des types dans
+`.obsidian/types.json` (gabarit : `templates/obsidian-types.json`) :
+
+| Propriété | Type Obsidian | Effet |
+|---|---|---|
+| `date`, `échéance` | `date` | sélecteur de date pour l'humain ; tri fiable dans les vues |
+| `tags`, `aliases` | `tags` / `aliases` | listes natives |
+| `statut`, `titre`, `projet`, `résumé`, `relation`, `organisation`, `rôle`, `coffre` | `text` | (Obsidian n'a pas de type « choix » — les 4 valeurs de `statut` restent garanties par la convention, pas par Obsidian) |
+
+C'est la **seule** entorse à « ne jamais toucher `.obsidian/` » : fusionner nos
+clés (créer le fichier si absent ; sinon ajouter les nôtres **sans écraser**
+celles de l'utilisateur). Bénéfice : renforce le **double accès** — l'humain
+édite `statut`/`échéance` via une belle UI, l'adjoint édite le même YAML comme
+du texte.
 
 ## 4. `.note-ai/` — la couche machine (le territoire de l'adjoint)
 
@@ -238,15 +256,26 @@ toutes les notes où la personne apparaît.
   noms de fichiers, `date:`/`échéance:` du frontmatter, `📅` des tâches.
 - **Orthographe traditionnelle** (non rectifiée).
 
-## 11. `Cahier-maître.md` — le tableau de bord
+## 11. `Cahier-maître.md` + `Cahier-maître.base` — le tableau de bord
 
-- Table des projets : nom, statut, prochaine échéance, tâches ouvertes +
-  section « Activité récente » (5 dernières actions de rangement).
-- **Si l'utilisateur a les plugins Obsidian Dataview/Tasks** : les blocs de
-  requête du template font le travail tout seuls.
-- **Sinon (autosuffisance)** : l'adjoint maintient la table statique à la main,
-  à chaque changement de statut/échéance. Le template contient les deux —
-  ne supprimer ni l'un ni l'autre.
+Trois couches, du plancher au confort — **ne supprimer aucune** :
+
+1. **Table statique** dans `Cahier-maître.md` (le plancher autosuffisant) :
+   projets — nom, statut, prochaine échéance, tâches ouvertes — + « Activité
+   récente » (5 dernières actions). L'adjoint la maintient à la main à chaque
+   changement de statut/échéance. Marche partout, sans aucun plugin ni version
+   récente.
+2. **Vues Bases natives** dans `Cahier-maître.base`, embarquées dans le `.md`
+   via `![[Cahier-maître.base#Projets]]` et `![[…#Échéances à venir]]`. Bases
+   fait partie du **cœur d'Obsidian** (pas un plugin communautaire) → cohérent
+   avec l'autosuffisance, contrairement à Dataview qu'on n'utilise plus ici.
+   Les vues lisent les **propriétés** (`statut`, `échéance`, `file.name`).
+   ⚠️ Le `.base` livré est un **gabarit de départ** : si une vue s'affiche mal,
+   l'ouvrir dans l'éditeur de Bases d'Obsidian, qui réécrit la syntaxe exacte
+   de la version installée. Propriété accentuée → forme `note["échéance"]`.
+3. **Tasks (plugin optionnel)** : seul à centraliser les cases `- [ ]` (Bases
+   travaille sur les propriétés, pas sur les tâches en ligne). Sans Tasks,
+   l'adjoint tient la section « Tâches en retard » à la main.
 
 ## 12. `_projet.md` — le cahier de projet
 

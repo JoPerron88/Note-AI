@@ -1,0 +1,33 @@
+# Cahier maître — vues base de données natives (Obsidian Bases).
+# Gabarit de départ : si une vue s'affiche mal, ouvre-la dans l'éditeur de
+# Bases d'Obsidian — il réécrit la syntaxe exacte de ta version. La table
+# statique de Cahier-maître.md reste le plancher si Bases n'est pas dispo.
+filters:
+  and:
+    - 'file.inFolder("Projets")'
+views:
+  - type: table
+    name: Projets
+    filters:
+      and:
+        - 'file.name == "_projet"'
+    order:
+      - file.name
+      - note.statut
+      - note["échéance"]
+    sort:
+      - property: note["échéance"]
+        direction: ASC
+  - type: table
+    name: Échéances à venir
+    filters:
+      and:
+        - 'file.name != "_projet"'
+        - 'note.statut != "terminé"'
+    order:
+      - file.name
+      - note.statut
+      - note["échéance"]
+    sort:
+      - property: note["échéance"]
+        direction: ASC
