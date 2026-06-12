@@ -89,8 +89,16 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
    concept (« range ça », « où en suis-je »…). Les ratés observés = matière du REFACTOR
    (le skill n'a pas eu de tests sous-agents — le test réel en tient lieu).
 2. Itérations sur le skill selon les retours ; « plus tard » du §12.6 (Ollama, automatisations).
-3. **Piste v2** : lancer la Phase 0 (walking skeleton — fenêtre Electron + chat Claude
-   fonctionnel sur un dossier, testé Mac ET Windows) selon `NOTE-AI-V2-PLAN.md`, sur demande.
+3. **Piste v2 — Phase 0 LIVRÉE (2026-06-11)** : repo **`JoPerron88/note-ai-app`** (privé).
+   Walking skeleton fonctionnel : vendor claudian en subtree + shim obsidian, AgentService
+   (ClaudeChatRuntime hors Obsidian), **smoke test headless VERT** (tour réel → approbation
+   Write → fichier créé → contexte conservé), fenêtre Electron minimale (picker de dossier,
+   chat streamé, carte d'approbation) qui boot sans crash. `npm run smoke` / `npm run dev`.
+   Pièges résolus consignés dans `findings.md` du dossier parent (`Claudian Note/`) :
+   ApprovalDecision='allow', safeMode 'default' obligatoire pour les approbations,
+   types obsidian@1.8.7 + runtime shim, casse APFS (note-ai = Note-AI → note-ai-app).
+   **Reste de la Phase 0** : test visuel humain (`npm run dev`) + test sur Windows.
+   Ensuite : Phase 1 (le carnet) selon `NOTE-AI-V2-PLAN.md`.
    ⚠️ Vigilance : le plan v2 cite le §12 du CONCEPT (`_inbox/`, `_index.ai.md`) — à l'exécution,
    prendre les conventions **réelles** de la v1 (`_boîte/`, couche `.note-ai/`, standard fr-CA,
    `plugins/note-ai/references/conventions.md`), qui ont évolué depuis le §12.
