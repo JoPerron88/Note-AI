@@ -118,9 +118,15 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
    « Range la boîte. » a produit slug + frontmatter + réécriture + _projet.md + index IA +
    carte + journal, par conventions seules. Leçon durcie dans le CLAUDE.md de coffre :
    la boîte se liste TOUJOURS sur disque (l'agent croyait la carte périmée).
+   **Phase 4 (filet de sécurité) LIVRÉE aussi (2026-06-12)** : Git silencieux via
+   isomorphic-git (`.git` HORS du coffre dans userData — le piège iCloud du plan —, commits
+   auto débouncés 30 s + après chaque tour d'agent, jamais de push), panneau « ⏪ Historique »
+   par page avec restauration (commit de sûreté préalable), recherche full-text MiniSearch
+   dans la sidebar (< 1 ms), modal Réglages ⚙ (modèle, permissions avec avertissement yolo,
+   chemin CLI, env vars). `npm run smoke:git` VERT.
    **Reste humain** : test visuel (`npm run dev`) + test sur Windows.
-   Ensuite : Phase 4 (Git silencieux + restauration, recherche full-text, réglages)
-   selon `NOTE-AI-V2-PLAN.md`.
+   Ensuite : Phase 5 (distribution : electron-builder .dmg/NSIS, CI, GitHub Releases) —
+   la DERNIÈRE du plan v2.
    ⚠️ Vigilance : le plan v2 cite le §12 du CONCEPT (`_inbox/`, `_index.ai.md`) — à l'exécution,
    prendre les conventions **réelles** de la v1 (`_boîte/`, couche `.note-ai/`, standard fr-CA,
    `plugins/note-ai/references/conventions.md`), qui ont évolué depuis le §12.
