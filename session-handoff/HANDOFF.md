@@ -110,9 +110,17 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
    `npm run smoke:range` VERT = scénario CONCEPT §12.4 de bout en bout (image rangée, page
    créée avec embed, approbations, reprise de session). ⚠️ Vigilance ouverte : couverture des
    approbations Write à auditer (un run a vu des Write non gatés — voir task_plan).
-   **Reste humain** : test visuel (`npm run dev`, ouvrir coffre-test) + test sur Windows.
-   Ensuite : Phase 3 (intelligence Note-AI : VaultInit, boutons « Ranger la boîte » /
-   « Où en suis-je ? », index IA, vue Tâches) selon `NOTE-AI-V2-PLAN.md`.
+   **Phase 3 (intelligence) LIVRÉE aussi (2026-06-11)** : initialisation du coffre aux
+   conventions v1 réelles (CLAUDE.md d'adjoint v2 — sans Obsidian, propose-puis-applique =
+   cartes d'approbation —, Cahier-maître, `.note-ai/` carte/mémoire/journal/index/gabarits,
+   Gens/_moi), non destructive ; boutons « Range la boîte » / « Où en suis-je ? » ; vue
+   Tâches (retard/à venir, clic → page). `npm run smoke:vault` VERT — la preuve forte :
+   « Range la boîte. » a produit slug + frontmatter + réécriture + _projet.md + index IA +
+   carte + journal, par conventions seules. Leçon durcie dans le CLAUDE.md de coffre :
+   la boîte se liste TOUJOURS sur disque (l'agent croyait la carte périmée).
+   **Reste humain** : test visuel (`npm run dev`) + test sur Windows.
+   Ensuite : Phase 4 (Git silencieux + restauration, recherche full-text, réglages)
+   selon `NOTE-AI-V2-PLAN.md`.
    ⚠️ Vigilance : le plan v2 cite le §12 du CONCEPT (`_inbox/`, `_index.ai.md`) — à l'exécution,
    prendre les conventions **réelles** de la v1 (`_boîte/`, couche `.note-ai/`, standard fr-CA,
    `plugins/note-ai/references/conventions.md`), qui ont évolué depuis le §12.
