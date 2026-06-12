@@ -97,8 +97,14 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
    Pièges résolus consignés dans `findings.md` du dossier parent (`Claudian Note/`) :
    ApprovalDecision='allow', safeMode 'default' obligatoire pour les approbations,
    types obsidian@1.8.7 + runtime shim, casse APFS (note-ai = Note-AI → note-ai-app).
-   **Reste de la Phase 0** : test visuel humain (`npm run dev`) + test sur Windows.
-   Ensuite : Phase 1 (le carnet) selon `NOTE-AI-V2-PLAN.md`.
+   **Phase 1 (le carnet) LIVRÉE aussi (2026-06-11)** : arbre Notebooks›Sections›Pages avec
+   CRUD (corbeille système), éditeur CodeMirror 6 (source + bascule Lecture), préview
+   markdown-it (wikilinks navigables, cases cochables qui réécrivent le fichier, KaTeX,
+   images via protocole `noteai-asset://` borné), bandeau frontmatter tolérant, watcher
+   chokidar (reload auto si buffer propre, bannière si conflit). `npm run smoke:notes` VERT.
+   Coffre de test prêt : `Claudian Note/coffre-test/` (page CONCEPT §12.2 complète).
+   **Reste humain** : test visuel (`npm run dev`, ouvrir coffre-test) + test sur Windows.
+   Ensuite : Phase 2 (chat complet) selon `NOTE-AI-V2-PLAN.md`.
    ⚠️ Vigilance : le plan v2 cite le §12 du CONCEPT (`_inbox/`, `_index.ai.md`) — à l'exécution,
    prendre les conventions **réelles** de la v1 (`_boîte/`, couche `.note-ai/`, standard fr-CA,
    `plugins/note-ai/references/conventions.md`), qui ont évolué depuis le §12.
