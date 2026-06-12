@@ -124,9 +124,16 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
    par page avec restauration (commit de sûreté préalable), recherche full-text MiniSearch
    dans la sidebar (< 1 ms), modal Réglages ⚙ (modèle, permissions avec avertissement yolo,
    chemin CLI, env vars). `npm run smoke:git` VERT.
-   **Reste humain** : test visuel (`npm run dev`) + test sur Windows.
-   Ensuite : Phase 5 (distribution : electron-builder .dmg/NSIS, CI, GitHub Releases) —
-   la DERNIÈRE du plan v2.
+   **Phase 5 (distribution) LIVRÉE (2026-06-12) — LE PLAN V2 EST COMPLET (phases 0-5).**
+   electron-builder (piège asar résolu : le cli.js de l'Agent SDK doit rester décompressé),
+   onboarding CLI sur l'accueil, CI (typecheck/build/smokes sans agent) + workflow de release
+   (tag → mac+win), et **Release v0.1.0 publiée** :
+   https://github.com/JoPerron88/note-ai-app/releases/tag/v0.1.0 (.dmg arm64+Intel ;
+   l'installeur Windows arrive par le workflow). App packagée bootée et vérifiée.
+   **Restes humains** : test visuel complet (installer le .dmg, ouvrir un coffre, init,
+   « Range la boîte »), test machine vierge, test Windows. Vigilance ouverte : audit de la
+   couverture des approbations Write (hérité Phase 2). Ensuite : itérations selon usage réel
+   (« plus tard » du CONCEPT §12.6 : Ollama, inline-edit, multi-provider…).
    ⚠️ Vigilance : le plan v2 cite le §12 du CONCEPT (`_inbox/`, `_index.ai.md`) — à l'exécution,
    prendre les conventions **réelles** de la v1 (`_boîte/`, couche `.note-ai/`, standard fr-CA,
    `plugins/note-ai/references/conventions.md`), qui ont évolué depuis le §12.
