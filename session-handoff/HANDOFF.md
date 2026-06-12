@@ -103,8 +103,16 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
    images via protocole `noteai-asset://` borné), bandeau frontmatter tolérant, watcher
    chokidar (reload auto si buffer propre, bannière si conflit). `npm run smoke:notes` VERT.
    Coffre de test prêt : `Claudian Note/coffre-test/` (page CONCEPT §12.2 complète).
+   **Phase 2 (chat complet) LIVRÉE aussi (2026-06-11)** : sessions persistées + reprise avec
+   contexte (meta `.claudian/sessions/`, messages rechargés des JSONL natifs — piège realpath
+   résolu), ChatPanel riche (markdown + wikilinks cliquables, thinking/tool calls repliables,
+   carte d'approbation avec DIFF, historique, usage tokens), drag & drop → `_boîte/`.
+   `npm run smoke:range` VERT = scénario CONCEPT §12.4 de bout en bout (image rangée, page
+   créée avec embed, approbations, reprise de session). ⚠️ Vigilance ouverte : couverture des
+   approbations Write à auditer (un run a vu des Write non gatés — voir task_plan).
    **Reste humain** : test visuel (`npm run dev`, ouvrir coffre-test) + test sur Windows.
-   Ensuite : Phase 2 (chat complet) selon `NOTE-AI-V2-PLAN.md`.
+   Ensuite : Phase 3 (intelligence Note-AI : VaultInit, boutons « Ranger la boîte » /
+   « Où en suis-je ? », index IA, vue Tâches) selon `NOTE-AI-V2-PLAN.md`.
    ⚠️ Vigilance : le plan v2 cite le §12 du CONCEPT (`_inbox/`, `_index.ai.md`) — à l'exécution,
    prendre les conventions **réelles** de la v1 (`_boîte/`, couche `.note-ai/`, standard fr-CA,
    `plugins/note-ai/references/conventions.md`), qui ont évolué depuis le §12.
