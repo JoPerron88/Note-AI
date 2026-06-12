@@ -484,3 +484,33 @@ indispensable à la V1.)
 
 **Plus tard :** repli Ollama hors-ligne · automatisations/commandes packagées · génération
 proactive · multi-vault · raffinements d'ergonomie.
+
+---
+
+## 13. Réouverture — Note-AI v2 : application standalone sur base Claudian (2026-06-11)
+
+> Sur demande explicite de l'utilisateur (2026-06-11), **deux décisions arrêtées du 2026-06-10
+> sont rouvertes** pour une **nouvelle piste v2**, sans effacer la v1 (plugin Claude Code sur
+> Obsidian, construite et en test) :
+
+1. **Forme : application desktop standalone** (Electron), construite en réutilisant le code du
+   plugin Obsidian **Claudian** (github.com/YishenTu/claudian) — dont ~70 % est déjà indépendant
+   d'Obsidian (étude de couplage mesurée). La Route A (« app de zéro ») redevient atteignable
+   parce qu'on ne part **pas** de zéro : moteur chat, providers, sécurité des approbations et
+   historique sont repris de Claudian ; seules l'UI carnet et l'UI chat sont à construire.
+2. **Moteur : l'Agent SDK de Claude est accepté en connaissance de cause.** La règle « jamais
+   d'usage programmatique de Claude » est **levée pour la v2** : crédit mensuel inclus dans
+   l'abonnement, puis tarif API au-delà (bascule du 15/06/2026, cf. §9.3). Le coût devient le
+   **risque produit n°1**, traité dans le plan (usage affiché, modèle économe par défaut,
+   plafond/alarme local, index économiseurs de tokens). La v1 (Claude Code interactif /
+   Gemini CLI, sur abonnement) reste la voie « zéro surcoût ».
+
+**Invariants maintenus en v2** : structure OneNote (Notebooks › Sections › Pages = dossiers),
+double accès à parts égales, données 100 % locales en Markdown, conventions du coffre v1
+(`_boîte/`, couche `.note-ai/`, frontmatter fr-CA, propose-puis-applique) — reprises telles
+quelles, c'est l'app qui change, pas le coffre.
+
+**Où vit le travail v2** : repo `JoPerron88/Claudian-Note` — `NOTE-AI-V2-PLAN.md` (architecture,
+phases 0-5, risques), `FAISABILITE-STANDALONE.md` (étude de couplage), `CLAUDIAN-COMPREHENSION.md`
+(référence du codebase Claudian). La construction démarre par une « walking skeleton »
+(phase 0), pas encore lancée à la date de cette entrée.

@@ -1,5 +1,5 @@
 # Handoff — Note AI
-> Dernière mise à jour : 2026-06-10. Reprise à froid : si tu n'as pas l'outillage de ce projet,
+> Dernière mise à jour : 2026-06-11. Reprise à froid : si tu n'as pas l'outillage de ce projet,
 > lis d'abord `OUTILLAGE.md` (à côté), puis ce fichier.
 
 ## Le but (FinalGoal)
@@ -72,6 +72,16 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
   bootstrap auto via `activate_skill` côté Gemini.
 - Contexte d'usage : l'utilisateur a installé **Obsidian + Claude sidebar** (Claude Code
   interactif dans Obsidian) — c'est le terrain de test réel.
+- ✅ **Piste v2 ouverte : app standalone sur base Claudian** (2026-06-11, demande explicite).
+  Deux décisions du 2026-06-10 rouvertes POUR LA V2 (la v1 reste en test, voie zéro surcoût) :
+  forme = **app Electron standalone** réutilisant le code du plugin Claudian (~70 % déjà
+  indépendant d'Obsidian — `ClaudeChatRuntime` ne demande que 4 choses à son hôte) ; moteur =
+  **Agent SDK accepté** en connaissance de cause (coût = risque n°1, parades prévues au plan).
+  Cap amendé dans `goal.md` + `CONCEPT.md` §13. **Tout le travail v2 vit dans le repo
+  `JoPerron88/Claudian-Note`** : `NOTE-AI-V2-PLAN.md` (architecture : un repo Electron+React,
+  claudian en git subtree + shim du module `obsidian`, phases 0-5 avec critères de done),
+  `FAISABILITE-STANDALONE.md`, `CLAUDIAN-COMPREHENSION.md` ; clones de référence `claudian/`
+  et `Note-AI/` à côté (dossier iCloud `…/Projet Claude Code/Claudian Note/`).
 
 ## Ce qui était prévu ensuite
 1. **Test réel** : installation via `/plugin marketplace add JoPerron88/Note-AI` +
@@ -79,6 +89,11 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
    concept (« range ça », « où en suis-je »…). Les ratés observés = matière du REFACTOR
    (le skill n'a pas eu de tests sous-agents — le test réel en tient lieu).
 2. Itérations sur le skill selon les retours ; « plus tard » du §12.6 (Ollama, automatisations).
+3. **Piste v2** : lancer la Phase 0 (walking skeleton — fenêtre Electron + chat Claude
+   fonctionnel sur un dossier, testé Mac ET Windows) selon `NOTE-AI-V2-PLAN.md`, sur demande.
+   ⚠️ Vigilance : le plan v2 cite le §12 du CONCEPT (`_inbox/`, `_index.ai.md`) — à l'exécution,
+   prendre les conventions **réelles** de la v1 (`_boîte/`, couche `.note-ai/`, standard fr-CA,
+   `plugins/note-ai/references/conventions.md`), qui ont évolué depuis le §12.
 
 ## Reprendre sur une machine neuve (le projet)
 1. `git clone https://github.com/JoPerron88/Note-AI.git` (ou ouvrir le dossier iCloud).

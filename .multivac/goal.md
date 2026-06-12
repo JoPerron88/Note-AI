@@ -44,3 +44,22 @@ Direction arrêtée le 2026-06-10 (débat à 3 entités convergent → Route Obs
 plugin vit dans `plugins/note-ai/` (skill + conventions + templates ; bootstrap automatique d'un
 coffre, `CLAUDE.md` déposé = adjoint par défaut). Terrain d'usage : Claude Code interactif dans
 Claude sidebar (Obsidian). Prochaine étape : test réel par l'utilisateur, puis itérations.
+
+## Piste v2 ouverte (2026-06-11) — app standalone sur base Claudian
+
+Sur demande explicite, **deux contraintes sont amendées pour une piste v2 parallèle** (la v1
+reste la voie « zéro surcoût », toujours en test) :
+
+- **Forme v2 : application desktop standalone** (Electron) réutilisant le code du plugin
+  Claudian (~70 % déjà indépendant d'Obsidian) — l'exception « construit sur Obsidian » ne
+  s'applique pas à la v2.
+- **Moteur v2 : Agent SDK de Claude accepté en connaissance de cause** (crédit d'abonnement puis
+  tarif API — la règle « pas d'usage programmatique » est levée POUR LA V2 seulement). Coût =
+  risque produit n°1 : usage affiché, modèle économe par défaut, plafond/alarme, index
+  économiseurs de tokens.
+
+Invariants maintenus : structure OneNote, double accès, 100 % local Markdown, conventions du
+coffre v1 (le coffre ne change pas, l'app autour change). Détail : `CONCEPT.md` §13 ; plan
+d'architecture et études dans le repo `JoPerron88/Claudian-Note` (`NOTE-AI-V2-PLAN.md`,
+`FAISABILITE-STANDALONE.md`, `CLAUDIAN-COMPREHENSION.md`). Phase 0 (walking skeleton) pas
+encore lancée.

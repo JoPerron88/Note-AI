@@ -38,10 +38,13 @@ Ces arbitrages ont été tranchés le 2026-06-10 après recherche et débat (dé
 2. **Moteur IA = Claude Code interactif** (sur l'abonnement) **ou Gemini CLI** (palier gratuit),
    **à égalité** depuis le 2026-06-11 — même coffre, même adjoint (le `CLAUDE.md` du coffre est
    neutre-moteur ; Gemini le lit via `.gemini/settings.json`, et le skill est copié dans le
-   coffre à l'init). **`claude -p` / headless / Agent SDK sont EXCLUS** : facturés au tarif API
-   depuis le 15/06/2026, ce qui contredit la contrainte ferme « pas d'API payante ». Ne jamais
-   proposer une architecture qui repose sur l'usage programmatique de Claude. Ollama = repli
-   local optionnel (plus tard, pas V1).
+   coffre à l'init). **`claude -p` / headless / Agent SDK sont EXCLUS pour la v1** : facturés au
+   tarif API depuis le 15/06/2026, ce qui contredit la contrainte ferme « pas d'API payante ».
+   Ollama = repli local optionnel (plus tard, pas V1).
+   **Amendement 2026-06-11 (piste v2 uniquement)** : sur demande explicite, l'**Agent SDK est
+   accepté pour la v2 standalone** (app Electron sur base Claudian, repo
+   `JoPerron88/Claudian-Note`, cf. `CONCEPT.md` §13) — coût assumé en connaissance de cause,
+   parades au plan. La v1 reste strictement sans usage programmatique.
 3. **Le vrai livrable = un jeu de conventions + un mode d'emploi de Claude**, très peu de code.
    Ne pas réinventer ce qu'Obsidian fournit déjà (dossiers, liens/backlinks, tags, frontmatter,
    Dataview, Tasks, terminal intégré).
