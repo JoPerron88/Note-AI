@@ -25,8 +25,8 @@ Tout le travail se fait **en français** (documents, commits, échanges).
 - **`.multivac/goal.md`** — le cap (FinalGoal) en version courte, avec les contraintes fermes.
 - **`session-handoff/HANDOFF.md`** — état exact du projet et prochaine étape. **À lire en début
   de session de reprise, et à mettre à jour en fin de session de travail significative.**
-- **`session-handoff/OUTILLAGE.md`** — plugins/skills utilisés (Multivac, superpowers… —
-  facultatifs pour avancer).
+- **`session-handoff/OUTILLAGE.md`** — plugins/skills utilisés (superpowers… — facultatifs
+  pour avancer).
 
 ## Décisions arrêtées (ne pas rouvrir sans demande explicite)
 
@@ -35,10 +35,10 @@ Ces arbitrages ont été tranchés le 2026-06-10 après recherche et débat (dé
 1. **Route Obsidian** (vs VSCodium vs app de zéro). Critère décisif : quasi zéro code à écrire.
    Obsidian est propriétaire mais les données restent du Markdown brut → pas de verrouillage.
    Logseq écarté (modèle outliner trop loin de OneNote).
-2. **Moteur IA = Claude Code interactif** (sur l'abonnement) **ou Gemini CLI** (palier gratuit),
-   **à égalité** depuis le 2026-06-11 — même coffre, même adjoint (le `CLAUDE.md` du coffre est
-   neutre-moteur ; Gemini le lit via `.gemini/settings.json`, et le skill est copié dans le
-   coffre à l'init). **`claude -p` / headless / Agent SDK sont EXCLUS pour la v1** : facturés au
+2. **Moteur IA = Claude Code interactif** (sur l'abonnement). *Le double moteur Gemini CLI,
+   décidé le 2026-06-11, est **abandonné le 2026-07-30** : jamais livré (aucun `.gemini/` sur
+   un coffre réel) et **Google a mis fin au Gemini CLI le 2026-06-18**, sept jours après la
+   décision.* **`claude -p` / headless / Agent SDK sont EXCLUS pour la v1** : facturés au
    tarif API depuis le 15/06/2026, ce qui contredit la contrainte ferme « pas d'API payante ».
    Ollama = repli local optionnel (plus tard, pas V1).
    **Amendement 2026-06-11 (piste v2 uniquement)** : sur demande explicite, l'**Agent SDK est

@@ -502,8 +502,11 @@ proactive · multi-vault · raffinements d'ergonomie.
    d'usage programmatique de Claude » est **levée pour la v2** : crédit mensuel inclus dans
    l'abonnement, puis tarif API au-delà (bascule du 15/06/2026, cf. §9.3). Le coût devient le
    **risque produit n°1**, traité dans le plan (usage affiché, modèle économe par défaut,
-   plafond/alarme local, index économiseurs de tokens). La v1 (Claude Code interactif /
-   Gemini CLI, sur abonnement) reste la voie « zéro surcoût ».
+   plafond/alarme local, index économiseurs de tokens). La v1 (Claude Code interactif, sur
+   abonnement) reste la voie « zéro surcoût ».
+   > *Correction du 2026-07-30* : cette décision citait aussi **Gemini CLI** comme voie
+   > gratuite pour la v1. **Google y a mis fin le 2026-06-18**, six jours après que ces lignes
+   > aient été écrites. Le double moteur est abandonné ; la v1 est mono-moteur, Claude Code.
 
 **Invariants maintenus en v2** : structure OneNote (Notebooks › Sections › Pages = dossiers),
 double accès à parts égales, données 100 % locales en Markdown, conventions du coffre v1

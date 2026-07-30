@@ -4,15 +4,14 @@
 ## Plugins / skills Claude Code utilisés sur ce projet
 
 - **superpowers** (plugin, marketplace officiel) — méthodes de travail (brainstorming, plans, TDD).
-  Disponible mais peu sollicité directement ici (le projet est passé par Multivac).
   Installer : `/plugin marketplace add claude-plugins-official`
   puis `/plugin install superpowers@claude-plugins-official`.
 
-- **Multivac** (skill **personnel**, `~/.claude/skills/multivac/`) — l'orchestrateur qui a piloté
-  toute la conception (analyse → casting de sous-agents → débat → synthèse). C'est lui qui écrit
-  le dossier `.multivac/` (dont `goal.md`, le cap). **Skill perso, pas un marketplace public** :
-  pour le retrouver sur une machine neuve, il faut **recopier le dossier du skill dans
-  `~/.claude/skills/`** depuis ta propre sauvegarde — il n'y a pas d'URL d'install publique.
+- ⛔ **Multivac — SKILL SUPPRIMÉ le 2026-07-30.** C'était l'orchestrateur personnel qui avait
+  piloté la conception de ce projet (analyse → casting de sous-agents → débat → synthèse), et
+  c'est lui qui avait créé le dossier `.multivac/`. **N'essaie pas de le réinstaller : il
+  n'existe plus.** Le dossier `.multivac/` et son `goal.md` **restent valides** — ils sont
+  écrits par `newproject` et lus par `session-handoff`, indépendamment du skill.
 
 - **newproject** et **session-handoff** (skills **personnels**, `~/.claude/skills/`) — amorçage du
   projet et préparation de la reprise (ce dossier). Même remarque : skills perso, à recopier dans

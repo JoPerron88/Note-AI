@@ -59,17 +59,13 @@ naturellement que via le chat. → Détail complet dans `.multivac/goal.md`.
   coffre** (l'extension peut ouvrir Claude dans un sous-dossier via clic droit → ancrer tous
   les chemins là où vit `.obsidian/`) ; (2) **mode YOLO** (`--dangerously-skip-permissions`)
   → propose-puis-applique devient le seul garde-fou, à garder strict.
-- ✅ **Bi-moteur : Gemini CLI à égalité avec Claude Code** (2026-06-11, cap amendé dans
-  `goal.md` + `CLAUDE.md` projet — « pas d'API payante » intact, Gemini = palier gratuit).
-  Architecture : (1) **source unique** — le `CLAUDE.md` du coffre, réécrit **neutre-moteur** ;
-  Gemini le lit via `<coffre>/.gemini/settings.json` (`context.fileName: ["CLAUDE.md",
-  "GEMINI.md"]`, template `gemini-settings.json`, fusion sans écraser) ; (2) **skill copié dans
-  le coffre** à l'init (`.gemini/skills/note-ai/` — même format SKILL.md, vérifié doc
-  officielle) → coffre autoportant, zéro install sur machine neuve ; (3) différences
-  conditionnées (conventions §13) : sous-agents Haiku si harnais le permet sinon par lots,
-  YOLO = `--dangerously-skip-permissions`/`--yolo`. À confirmer au test : forme
-  `context.fileName` (ancienne clé plate `contextFileName` notée en §13) et fiabilité du
-  bootstrap auto via `activate_skill` côté Gemini.
+- ⛔ **Double moteur Gemini CLI — ABANDONNÉ le 2026-07-30.** Décidé le 2026-06-11 et marqué
+  « ✅ livré » ici même, alors que **rien ne l'avait été** : aucun `.gemini/` n'a jamais existé
+  sur un coffre réel, et le « à confirmer au test » n'a jamais été confirmé. **Google a mis fin
+  au Gemini CLI le 2026-06-18**, sept jours après la décision de l'adopter. Tout est retiré du
+  dépôt (SKILL.md, conventions §13, `templates/CLAUDE-coffre.md`, README, CLAUDE.md,
+  `.multivac/goal.md`, CONCEPT §13) et `templates/gemini-settings.json` supprimé.
+  **Note AI est mono-moteur : Claude Code.**
 - Contexte d'usage : l'utilisateur a installé **Obsidian + Claude sidebar** (Claude Code
   interactif dans Obsidian) — c'est le terrain de test réel.
 - ✅ **Piste v2 ouverte : app standalone sur base Claudian** (2026-06-11, demande explicite).

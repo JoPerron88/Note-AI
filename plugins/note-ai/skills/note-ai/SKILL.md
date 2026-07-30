@@ -14,10 +14,9 @@ ta **couche machine** (`.note-ai/`, invisible pour l'humain) plutôt que tout
 le contenu (économie de tokens).
 
 **Règle d'autosuffisance** : ce skill se suffit à lui-même. N'utilise que les
-outils natifs de ton harnais (lecture, écriture, recherche, shell — il
-fonctionne à l'identique sous **Claude Code** et **Gemini CLI**, même format
-de skill). Ne dépends jamais d'un autre skill, plugin ou commande — n'en
-invoque aucun, n'en recommande aucun à installer.
+outils natifs de ton harnais (lecture, écriture, recherche, shell). Ne dépends
+jamais d'un autre skill, plugin ou commande — n'en invoque aucun, n'en
+recommande aucun à installer.
 
 **Langue de travail : français du Québec (fr-CA)** — typographie OQLF,
 vocabulaire québécois, dates en toutes lettres dans la prose (ISO pour la
@@ -45,7 +44,7 @@ Toutes les requêtes ne se valent pas (détail : §5 des conventions) :
 |---|---|---|
 | **Léger** (défaut) | Ranger 1 élément, créer 1 note, question simple | Carte + index concerné ; proposition en 1 ligne |
 | **Moyen** | Boîte pleine, résumé de projet, recherche transversale | Indexes + fichiers ciblés ; plan bref |
-| **Lourd** | Synthèse multi-notebooks, réorganisation, reconstruction d'index | Annoncer l'ampleur d'abord ; mécanique de masse → **sous-agent sur modèle économique** si ton harnais en offre (Claude Code : outil Agent + Haiku ; brief court, résultat vérifié) ; sinon (Gemini CLI) : traiter **par lots** en annonçant la progression ; le jugement reste au modèle principal |
+| **Lourd** | Synthèse multi-notebooks, réorganisation, reconstruction d'index | Annoncer l'ampleur d'abord ; mécanique de masse → **sous-agent sur modèle économique** si ton harnais en offre (outil Agent + Haiku ; brief court, résultat vérifié) ; sinon : traiter **par lots** en annonçant la progression ; le jugement reste au modèle principal |
 
 En cas de doute : niveau du dessous, escalader si ça ne suffit pas. **Jamais
 de jugement en sous-agent** (classement, réécriture, fiches). Le choix du
@@ -59,9 +58,8 @@ Au premier contact avec un coffre (toute requête, pas seulement « initialise �
 1. **Coffre Obsidian ?** Cherche `.obsidian/` à la racine du répertoire courant
    (ou au-dessus). Absent → tu n'es pas dans un coffre : comporte-toi
    normalement, ne propose rien.
-   ⚠️ **Ancrage à la racine du coffre.** Ton terminal (Claude sidebar, Gemini
-   CLI…) peut t'ouvrir avec le répertoire courant sur un **sous-dossier**
-   (clic droit sur `Projets/Maison/`).
+   ⚠️ **Ancrage à la racine du coffre.** Ton terminal peut t'ouvrir avec le
+   répertoire courant sur un **sous-dossier** (clic droit sur `Projets/Maison/`).
    La racine du coffre = le dossier qui contient `.obsidian/`. Une fois trouvée,
    **ancre TOUS tes chemins dessus** (`.note-ai/`, `Gens/`, `Cahier-maître.md`,
    `Projets/`) — jamais sur le répertoire courant.
@@ -87,13 +85,6 @@ Au premier contact avec un coffre (toute requête, pas seulement « initialise �
      **Seule exception à « ne jamais toucher `.obsidian/` »** : on **fusionne**
      les clés (créer si absent ; si présent, ajouter nos clés sans écraser
      celles de l'utilisateur). Détail : §3 des conventions.
-   - **Compat Gemini CLI (le coffre devient bi-moteur)** :
-     `.gemini/settings.json` ← `templates/gemini-settings.json` (fusionner si
-     existant, même règle que types.json) — fait lire `CLAUDE.md` à Gemini ;
-     puis **copier ce skill entier** (dossier `note-ai/` : SKILL.md +
-     `references/`) dans `<coffre>/.gemini/skills/note-ai/` → le skill voyage
-     avec le coffre, rien à installer sur les autres machines. Détail : §13.
-
    Les templates contiennent des placeholders `{{DATE}}`, `{{NOM_PROJET}}`… :
    les remplacer par les vraies valeurs au moment de la copie.
 
@@ -120,10 +111,9 @@ Au premier contact avec un coffre (toute requête, pas seulement « initialise �
 - **Propose puis applique** : avant toute écriture/déplacement, montre le plan
   en 2-3 lignes et attends le OK. Si l'utilisateur dit « vas-y sans demander »,
   respecte-le pour la session — et note-le dans `.note-ai/memoire.md`.
-  ⚠️ **En mode YOLO** (`--dangerously-skip-permissions` sous Claude Code,
-  `--yolo` sous Gemini CLI), aucune barrière système ne te retient : ta
-  discipline propose-puis-applique est alors **le seul garde-fou** contre un
-  mauvais rangement. La garder stricte — ne l'assouplir que sur consigne
+  ⚠️ **En mode YOLO** (`--dangerously-skip-permissions`), aucune barrière
+  système ne te retient : ta discipline propose-puis-applique est alors **le
+  seul garde-fou** contre un mauvais rangement. La garder stricte — ne l'assouplir que sur consigne
   explicite du propriétaire.
 - **Économie de tokens** : carte → mémoire → index → pages, dans cet ordre ;
   n'ouvrir une page entière que si nécessaire. Ne jamais relire tout le coffre.
@@ -169,6 +159,6 @@ Au premier contact avec un coffre (toute requête, pas seulement « initialise �
 | Enrichir une fiche par déduction (« il semble stressé ») | Factuel seulement : ce que les notes et l'utilisateur disent |
 | Contenu humain dans `.note-ai/` | `.note-ai/` = machine ; le contenu humain vit dans le coffre visible |
 | Écraser le `.obsidian/types.json` de l'utilisateur | Fusionner nos clés seulement ; ne jamais toucher `.obsidian/` au-delà |
-| Écrire des instructions spécifiques à un moteur dans le `CLAUDE.md` du coffre | Le fichier d'adjoint reste **neutre-moteur** (Claude Code ET Gemini CLI le lisent) |
+| Écrire des chemins ou des réglages propres à ta machine dans le `CLAUDE.md` du coffre | Le fichier d'adjoint décrit le **coffre**, pas l'installation — il doit rester juste sur n'importe quelle machine |
 | Inventer la syntaxe d'un `.base` | Gabarit de départ ; l'éditeur de Bases d'Obsidian réécrit la syntaxe exacte |
 | Initialiser sans demander, ou re-proposer à chaque message | Une proposition, une fois, puis respecter le choix |

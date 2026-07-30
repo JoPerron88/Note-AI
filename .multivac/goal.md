@@ -20,8 +20,9 @@ le même vault.
 
 - **Local d'abord** : données chez l'utilisateur ; sauvegarde + historique (Git en coulisse).
 - **PAS l'API payante Claude.** Pilotage via **Claude Code interactif** (sur l'abonnement)
-  **OU Gemini CLI** (palier gratuit) — moteurs **à égalité** depuis le 2026-06-11, même coffre,
-  même adjoint ; **Ollama** en repli local. Le mode headless `claude -p` est exclu (facturé au
+  seulement ; **Ollama** en repli local. *(Le double moteur Gemini CLI, décidé le 2026-06-11,
+  est abandonné le 2026-07-30 — jamais livré, et Google a mis fin au produit le 2026-06-18.)*
+  Le mode headless `claude -p` est exclu (facturé au
   tarif API depuis le 15/06/2026).
 - **Double accès** : notes en Markdown lisibles et modifiables à la main ET par l'IA, sur les
   mêmes fichiers. Maths **LaTeX inline** mélangées au Markdown.
